@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   
   before(:each) do
-    @user = create(:user)
+    @user = FactoryGirl.create(:user)
   end
 
 
@@ -16,6 +16,11 @@ RSpec.describe User, type: :model do
       it 'only contains letters' do
         expect(@user.name).to match /\A[a-z]+\z/i
       end
+
+      it 'is unique' do
+        @user_two = FactoryGirl.build(:user)
+        expect(@user_two).not_to be_valid
+      end
     end
 
     context 'email' do
@@ -24,7 +29,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'belongs to Helicon employee' do
-        expect(@user.email).to match /(\w\.?\w+)@hlcn.mx\z/
+        expect(@user.email).to match /([a-z]\.\w+)@hlcn.mx\z/
       end
     end
   end
