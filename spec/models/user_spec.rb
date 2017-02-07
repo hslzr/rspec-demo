@@ -8,24 +8,7 @@ RSpec.describe User, type: :model do
 
 
   describe '#validations' do
-    context 'name' do
-      it 'is present' do
-        expect(@user.name).not_to be_empty
-      end
-
-      it 'only contains letters' do
-        expect(@user.name).to match /\A[a-z]+\z/i
-      end
-    end
-
-    context 'email' do
-      it 'is present' do
-        expect(@user.email).not_to be_empty
-      end
-
-      it 'belongs to Helicon employee' do
-        expect(@user.email).to match /(\w\.?\w+)@hlcn.mx\z/
-      end
-    end
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
   end
 end
