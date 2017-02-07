@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true,
+                    uniqueness: true,
                     format: { with: /\A[a-z]+\z/i, message: "Letters only" }
 
   validates :email, presence: true,
