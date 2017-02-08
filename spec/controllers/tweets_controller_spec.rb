@@ -39,13 +39,14 @@ RSpec.describe TweetsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Tweet" do
+        binding.pry
         expect {
-          post :create, params: {tweet: attributes_for(:tweets)}
+          post :create, params: {tweet: FactoryGirl.attributes_for(:tweet)}
         }.to change(Tweet, :count).by(1)
       end
 
       it "assigns a newly created tweet as @tweet" do
-        post :create, params: {tweet: attributes_for(:tweet)}
+        post :create, params: {tweet: FactoryGirl.attributes_for(:tweet)}
         expect(assigns(:tweet)).to be_a(Tweet)
         expect(assigns(:tweet)).to be_persisted
       end
