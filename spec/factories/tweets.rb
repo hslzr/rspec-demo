@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :tweet do
-    content "MyString"
-    user nil
+    content { "A" * 140 }
+    user
   end
 end
