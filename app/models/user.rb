@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :tweets
+
   validates :name, presence: true,
                     uniqueness: true,
                     format: { with: /\A[a-z]+\z/i, message: "Letters only" }
